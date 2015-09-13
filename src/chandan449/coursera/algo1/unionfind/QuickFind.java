@@ -5,21 +5,10 @@ package chandan449.coursera.algo1.unionfind;
  *
  * @author Chandan Kumar (chandan449@gmail.com)
  */
-public class QuickFind implements UnionFind {
-
-	private int[] nodes;
-	private int numOfElements;
+public class QuickFind extends AbstractUnionFind implements UnionFind {
 
 	public QuickFind(int numOfElements) {
-		this.numOfElements = numOfElements;
-		this.nodes = new int[numOfElements];
-		initConnectedSets(nodes);
-	}
-
-	private void initConnectedSets(int[] nodes) {
-		for (int i = 0; i < nodes.length; i++) {
-			nodes[i] = i;
-		}
+		super(numOfElements);
 	}
 
 	@Override
@@ -30,11 +19,11 @@ public class QuickFind implements UnionFind {
 			// sets are already connected
 			return;
 		}
-		replaceAll(lastValueAtNode2, lastValueAtNode1);
+		replaceAll(nodes, lastValueAtNode2, lastValueAtNode1);
 	}
 
-	private void replaceAll(int oldValue, int newValue) {
-		for (int i = 0; i < numOfElements; i++) {
+	private void replaceAll(int[] nodes, int oldValue, int newValue) {
+		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i] == oldValue) {
 				nodes[i] = newValue;
 			}
