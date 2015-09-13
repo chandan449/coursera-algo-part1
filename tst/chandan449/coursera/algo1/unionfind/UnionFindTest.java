@@ -6,7 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author ckuma
+ * Test for {@link UnionFind}
+ *
+ * @author Chandan Kumar (chandan449@gmail.com)
  */
 public class UnionFindTest {
 	
@@ -14,7 +16,7 @@ public class UnionFindTest {
 
 	@Before
 	public void setUp() {
-		unionFind = new UnionFindImplWithSet();
+		unionFind = new QuickFind(10);
 	}
 
 	@Test

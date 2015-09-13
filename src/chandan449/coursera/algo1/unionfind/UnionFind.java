@@ -1,11 +1,7 @@
-/**
- * 
- */
 package chandan449.coursera.algo1.unionfind;
 
 /**
- * @author ckuma
- *
+ * @author Chandan Kumar (chandan449@gmail.com)
  */
 public interface UnionFind {
 	

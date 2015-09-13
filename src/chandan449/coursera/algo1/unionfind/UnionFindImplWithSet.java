@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author ckuma
+ * @author Chandan Kumar (chandan449@gmail.com)
  */
 public class UnionFindImplWithSet implements UnionFind {
 	
