@@ -11,14 +11,16 @@ public class QuickUnion extends AbstractUnionFind {
 
 	@Override
 	public void union(int node1, int node2) {
-		int node1Parent = getParentOf(node1);
-		int node2Parent = getParentOf(node2);
-		if (node1Parent != node2Parent) {
-			nodes[node2Parent] = node1Parent;
+		mergeTrees(rootOf(node1), rootOf(node2));
+	}
+
+	void mergeTrees(int root1, int root2) {
+		if (root1 != root2) {
+			nodes[root2] = root1;
 		}
 	}
 
-	int getParentOf(int node) {
+	int rootOf(int node) {
 		while (nodes[node] != node) {
 			node = nodes[node];
 		}
@@ -26,8 +28,8 @@ public class QuickUnion extends AbstractUnionFind {
 	}
 
 	@Override
-	public boolean isConnected(int node1, int node2) {
-		return getParentOf(node1) == getParentOf(node2);
+	public boolean connected(int node1, int node2) {
+		return rootOf(node1) == rootOf(node2);
 	}
 
 }

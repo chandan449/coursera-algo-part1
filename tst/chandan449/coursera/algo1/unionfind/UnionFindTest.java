@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test for {@link UnionFind}
+ * Test for {@link UnionFind} implementations.
  *
  * @author Chandan Kumar (chandan449@gmail.com)
  */
@@ -26,40 +26,40 @@ public class UnionFindTest {
 	@Test
 	public void testQuickFind() {
 		// no connection yet
-		assertFalse(quickFind.isConnected(1, 2));
+		assertFalse(quickFind.connected(1, 2));
 		union(quickFind, 4, 3);
 		union(quickFind, 3, 8);
 		union(quickFind, 6, 5);
 		union(quickFind, 9, 4);
 		union(quickFind, 2, 1);
-		assertFalse(quickFind.isConnected(0, 7));
-		assertTrue(quickFind.isConnected(8, 9));
+		assertFalse(quickFind.connected(0, 7));
+		assertTrue(quickFind.connected(8, 9));
 	}
 
 	@Test
 	public void testQuickUnion() {
 		// no connection yet
-		assertFalse(quickUnion.isConnected(1, 2));
+		assertFalse(quickUnion.connected(1, 2));
 		union(quickUnion, 4, 3);
 		union(quickUnion, 3, 8);
 		union(quickUnion, 6, 5);
 		union(quickUnion, 9, 4);
 		union(quickUnion, 2, 1);
-		assertFalse(quickUnion.isConnected(0, 7));
-		assertTrue(quickUnion.isConnected(8, 9));
+		assertFalse(quickUnion.connected(0, 7));
+		assertTrue(quickUnion.connected(8, 9));
 	}
 
 	@Test
 	public void testWeightedQuickUnion() {
 		// no connection yet
-		assertFalse(weightedQuickUnion.isConnected(1, 2));
+		assertFalse(weightedQuickUnion.connected(1, 2));
 		union(weightedQuickUnion, 4, 3);
 		union(weightedQuickUnion, 3, 8);
 		union(weightedQuickUnion, 6, 5);
 		union(weightedQuickUnion, 9, 4);
 		union(weightedQuickUnion, 2, 1);
-		assertFalse(weightedQuickUnion.isConnected(0, 7));
-		assertTrue(weightedQuickUnion.isConnected(8, 9));
+		assertFalse(weightedQuickUnion.connected(0, 7));
+		assertTrue(weightedQuickUnion.connected(8, 9));
 	}
 
 	private void union(UnionFind unionFind, int n1, int n2) {

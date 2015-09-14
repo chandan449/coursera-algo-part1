@@ -1,6 +1,5 @@
 /**
- * Contains solution of exercise, assignments, interview questions
- * for week 1 topic - Union Find
+ * Contains implementation of algorithms for week 1 topic - Union Find.
  *
  * @author Chandan Kumar (chandan449@gmail.com)
  */

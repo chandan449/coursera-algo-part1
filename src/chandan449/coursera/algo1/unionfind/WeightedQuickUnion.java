@@ -1,40 +1,48 @@
 package chandan449.coursera.algo1.unionfind;
 
 /**
+ * Improves {@link QuickUnion} by using weighted merge of trees during union.
+ * This ensures that tree height can grow to logN only, avoiding worst case
+ * scenario of linear tree.
+ *
  * @author Chandan Kumar (chandan449@gmail.com)
  */
 public class WeightedQuickUnion extends QuickUnion {
-	
-	protected int[] weights;
+
+	protected int[] treeSize;
 
 	public WeightedQuickUnion(int numOfElements) {
 		super(numOfElements);
-		this.weights = new int[numOfElements];
-		initWeights(weights);
+		this.treeSize = new int[numOfElements];
+		initTreeSize(treeSize);
 	}
-	
-	private void initWeights(int[] weights) {
-		for (int i = 0; i < weights.length; i++) {
-			weights[i] = 1;
+
+	/**
+	 * Initially all nodes are single element tree rooted at itself.
+	 * Hence initialize size of each tree to 1.
+	 */
+	private void initTreeSize(int[] treeSize) {
+		for (int i = 0; i < treeSize.length; i++) {
+			treeSize[i] = 1;
 		}
 	}
-	
+
 	@Override
-	public void union(int node1, int node2) {
-		int node1Parent = getParentOf(node1);
-		int node2Parent = getParentOf(node2);
-		int weight1 = weights[node1Parent];
-		int weight2 = weights[node2Parent];
-		if (weight1 >= weight2) {
-			nodes[node1Parent] = node2Parent;
-			weights[node2Parent] = weight1 + weight2;
+	void mergeTrees(int root1, int root2) {
+		if (lessThan(treeSize[root2], treeSize[root1])) {
+			nodes[root2] = root1;
+			treeSize[root1] += treeSize[root2];
 		}
 		else {
-			nodes[node2Parent] = node1Parent;
-			weights[node1Parent] = weight1 + weight2;
+			nodes[root1] = root2;
+			treeSize[root2] += treeSize[root1];
 		}
 	}
-	
+
+	private boolean lessThan(int number1, int number2) {
+		return  number1 < number2;
+	}
+
 	public static void main(String[] args) {
 		WeightedQuickUnion weightedQuickUnion = new WeightedQuickUnion(10);
 		weightedQuickUnion.union(7, 9);
