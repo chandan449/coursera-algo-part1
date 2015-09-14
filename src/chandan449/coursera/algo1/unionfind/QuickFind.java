@@ -47,12 +47,12 @@ public class QuickFind extends AbstractUnionFind implements UnionFind {
 
 	public static void main(String[] args) {
 		QuickFind quickFind = new QuickFind(10);
-		quickFind.union(9, 5);
-		quickFind.union(8, 7);
-		quickFind.union(3, 9);
-		quickFind.union(4, 8);
+		quickFind.union(8, 5);
+		quickFind.union(9, 4);
+		quickFind.union(1, 5);
 		quickFind.union(7, 0);
-		quickFind.union(5, 1);
+		quickFind.union(9, 3);
+		quickFind.union(8, 3);
 		String nodes = "";
 		for (int i = 0; i < quickFind.nodes.length; i++) {
 			nodes = nodes + quickFind.nodes[i] + " ";

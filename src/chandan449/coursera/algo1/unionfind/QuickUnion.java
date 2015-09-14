@@ -9,6 +9,9 @@ public class QuickUnion extends AbstractUnionFind {
 		super(numOfElements);
 	}
 
+	/**
+	 * Merging strategy is link tree2 to tree1.
+	 */
 	@Override
 	public void union(int node1, int node2) {
 		mergeTrees(rootOf(node1), rootOf(node2));
