@@ -1,5 +1,6 @@
 package chandan449.coursera.algo1.unionfind;
 
+
 /**
  * Union is O(n) and find is O(1).
  *
@@ -19,7 +20,7 @@ public class QuickFind extends AbstractUnionFind implements UnionFind {
 			// sets are already connected
 			return;
 		}
-		replaceAll(nodes, lastValueAtNode2, lastValueAtNode1);
+		replaceAll(nodes, lastValueAtNode1, lastValueAtNode2);
 	}
 
 	private void replaceAll(int[] nodes, int oldValue, int newValue) {
@@ -33,6 +34,21 @@ public class QuickFind extends AbstractUnionFind implements UnionFind {
 	@Override
 	public boolean isConnected(int node1, int node2) {
 		return nodes[node1] == nodes[node2];
+	}
+
+	public static void main(String[] args) {
+		QuickFind quickFind = new QuickFind(10);
+		quickFind.union(9, 5);
+		quickFind.union(8, 7);
+		quickFind.union(3, 9);
+		quickFind.union(4, 8);
+		quickFind.union(7, 0);
+		quickFind.union(5, 1);
+		String nodes = "";
+		for (int i = 0; i < quickFind.nodes.length; i++) {
+			nodes = nodes + quickFind.nodes[i] + " ";
+		}
+		System.out.println(nodes);
 	}
 
 }

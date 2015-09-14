@@ -18,7 +18,7 @@ public class QuickUnion extends AbstractUnionFind {
 		}
 	}
 
-	private int getParentOf(int node) {
+	int getParentOf(int node) {
 		while (nodes[node] != node) {
 			node = nodes[node];
 		}

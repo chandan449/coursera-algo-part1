@@ -12,13 +12,15 @@ import org.junit.Test;
  */
 public class UnionFindTest {
 
-	private UnionFind quickFind;
+	private QuickFind quickFind;
 	private QuickUnion quickUnion;
+	private WeightedQuickUnion weightedQuickUnion;
 
 	@Before
 	public void setUp() {
 		quickFind = new QuickFind(10);
 		quickUnion = new QuickUnion(10);
+		weightedQuickUnion = new WeightedQuickUnion(10);
 	}
 
 	@Test
@@ -45,6 +47,19 @@ public class UnionFindTest {
 		union(quickUnion, 2, 1);
 		assertFalse(quickUnion.isConnected(0, 7));
 		assertTrue(quickUnion.isConnected(8, 9));
+	}
+
+	@Test
+	public void testWeightedQuickUnion() {
+		// no connection yet
+		assertFalse(weightedQuickUnion.isConnected(1, 2));
+		union(weightedQuickUnion, 4, 3);
+		union(weightedQuickUnion, 3, 8);
+		union(weightedQuickUnion, 6, 5);
+		union(weightedQuickUnion, 9, 4);
+		union(weightedQuickUnion, 2, 1);
+		assertFalse(weightedQuickUnion.isConnected(0, 7));
+		assertTrue(weightedQuickUnion.isConnected(8, 9));
 	}
 
 	private void union(UnionFind unionFind, int n1, int n2) {
