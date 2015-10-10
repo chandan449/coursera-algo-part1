@@ -21,10 +21,19 @@ public class QuicksortTest {
     }
 
     @Test
-    public void testTwoDistinctItemSorting() {
+    public void test1TwoDistinctItemSorting() {
         Integer[] items = new Integer[2];
         items[0] = 3;
         items[1] = -3;
+
+        sortAndTest(items, DISTINCT);
+    }
+    
+    @Test
+    public void test2TwoDistinctItemSorting() {
+        Integer[] items = new Integer[2];
+        items[0] = -3;
+        items[1] = 3;
 
         sortAndTest(items, DISTINCT);
     }

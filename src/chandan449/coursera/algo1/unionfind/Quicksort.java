@@ -14,26 +14,63 @@ public class Quicksort {
             return;
 
         // partition
-        int j = partition(items, lo, hi);
+        Range range = partition(items, lo, hi);
 
         // sort partitions
-        sort(items, lo, j - 1);
-        sort(items, j + 1, hi);
+        sort(items, lo, range.left - 1);
+        sort(items, range.right + 1, hi);
     }
 
-    private static int partition(Comparable[] items, int lo, int hi) {
+    private static Range partition(Comparable[] items, int lo, int hi) {
+        
+        int mid = lo + (hi - lo) / 2;
+        int lt = mid, gt = mid;
+        
         // choose pivot
-        int pivot = lo;
+        Comparable pivot = items[mid];
 
-        int i = lo + 1, j = hi;
-        while (i <= j) {
-            if (lessThanEqualsTo(items, i, pivot)) i++;
-            else if (less(items, pivot, j)) j--;
-            else if (i < j) exchange(items, i, j);
+        int i = lo, j = hi;
+        while (!(i >= lt && j <= gt)) {
+            if (less(items[i], pivot)) {
+                i++;
+            }
+            else if (items[i].equals(pivot) && i < lt) {
+                exchange(items, i, --lt);
+            }
+            else if (less(pivot, items[j])) {
+                j--;
+            }
+            else if (items[j].equals(pivot) && j > gt){
+                exchange(items, j, ++gt);
+            }
+            else if (i < lt && j > gt) {
+                exchange(items, i, j);
+            }
+            else if (i == lt && j > gt) {
+                exchange(items, i, j);
+                lt++;
+                if (gt < lt) gt = lt;
+            }
+            else if (j == gt) {
+                exchange(items, i, j);
+                gt--;
+                if (lt > gt) lt = gt;
+            }
         }
-        // replace pivot
-        exchange(items, pivot, j);
-        return j;
+        
+        Range range = new Range();
+        range.left = lt;
+        range.right = gt;
+        return range;
+    }
+    
+    private static boolean less(Comparable comparable, Comparable pivot) {
+        return comparable.compareTo(pivot) < 0;
+    }
+
+    static class Range {
+        public int left;
+        public int right;
     }
 
     private static void exchange(Comparable[] items, int i, int j) {
