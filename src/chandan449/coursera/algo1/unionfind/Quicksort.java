@@ -13,26 +13,26 @@ public class Quicksort {
         if (hi <= lo)
             return;
 
-        // choose pivot
-        int pivot = lo;
-
         // partition
-        int j = partition(items, lo, hi, pivot);
-        // replace pivot
-        exchange(items, pivot, j);
+        int j = partition(items, lo, hi);
 
         // sort partitions
         sort(items, lo, j - 1);
         sort(items, j + 1, hi);
     }
 
-    private static int partition(Comparable[] items, int lo, int hi, int pivot) {
+    private static int partition(Comparable[] items, int lo, int hi) {
+        // choose pivot
+        int pivot = lo;
+
         int i = lo + 1, j = hi;
         while (i <= j) {
-            if (less(items, i, pivot)) i++;
+            if (lessThanEqualsTo(items, i, pivot)) i++;
             else if (less(items, pivot, j)) j--;
             else if (i < j) exchange(items, i, j);
         }
+        // replace pivot
+        exchange(items, pivot, j);
         return j;
     }
 
@@ -44,6 +44,10 @@ public class Quicksort {
 
     private static boolean less(Comparable[] items, int i, int j) {
         return items[i].compareTo(items[j]) < 0;
+    }
+
+    private static boolean lessThanEqualsTo(Comparable[] items, int i, int j) {
+        return items[i].compareTo(items[j]) <= 0;
     }
 
     private static <T> boolean isSorted(Comparable[] items) {

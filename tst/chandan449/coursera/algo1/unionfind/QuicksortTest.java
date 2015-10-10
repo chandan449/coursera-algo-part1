@@ -51,7 +51,6 @@ public class QuicksortTest {
         sortAndTest(items, DISTINCT);
     }
 
-    @Ignore
     @Test
     public void testSortingOfFiveItemWithDuplicates() {
         Integer[] items = new Integer[5];
@@ -64,7 +63,6 @@ public class QuicksortTest {
         sortAndTest(items, "duplicate");
     }
 
-    @Ignore
     @Test
     public void testSortingOfMultipleDuplicates() {
         Integer[] items = new Integer[5];
