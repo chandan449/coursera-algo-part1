@@ -17,22 +17,23 @@ public class Quicksort {
         int pivot = lo;
 
         // partition
-        int i = lo + 1, j = hi;
-        while (i <= j) {
-            while (i <= j && less(items, i, pivot))
-                i++;
-            while (j >= i && items[j].compareTo(items[pivot]) >= 0)
-                j--;
-            if (i < j) {
-                exchange(items, i, j);
-            }
-        }
+        int j = partition(items, lo, hi, pivot);
         // replace pivot
-        exchange(items, pivot, i - 1);
+        exchange(items, pivot, j);
 
         // sort partitions
-        sort(items, lo, i - 2);
-        sort(items, i, hi);
+        sort(items, lo, j - 1);
+        sort(items, j + 1, hi);
+    }
+
+    private static int partition(Comparable[] items, int lo, int hi, int pivot) {
+        int i = lo + 1, j = hi;
+        while (i <= j) {
+            if (less(items, i, pivot)) i++;
+            else if (less(items, pivot, j)) j--;
+            else if (i < j) exchange(items, i, j);
+        }
+        return j;
     }
 
     private static void exchange(Comparable[] items, int i, int j) {
